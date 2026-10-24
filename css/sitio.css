@@ -158,16 +158,26 @@ a { color: var(--yellow); }
 }
 .pendiente span { background: var(--paper); padding: 8px 16px; border-radius: 999px; border: 3px solid var(--ink); }
 
-/* Cuento */
-.libro {
-  background: var(--paper);
-  color: var(--paper-ink);
+/* Cuento: la imagen manda, todo en una pantalla */
+body.cuento { height: 100dvh; overflow: hidden; }
+.escena { height: 100%; display: flex; flex-direction: column; gap: clamp(8px, 1.6dvh, 16px); padding: clamp(10px, 2dvh, 22px) clamp(10px, 2vw, 26px); }
+.avance { flex: none; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.15); overflow: hidden; }
+.avance span { display: block; height: 100%; background: var(--yellow); transition: width 0.4s ease; }
+/* contenedor de tamaño: las medidas de adentro (cqw/cqh) son relativas al espacio libre */
+.libro { flex: 1; min-height: 0; container-type: size; }
+.pagina { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.4cqh; }
+.libro .lamina {
+  position: relative;
+  flex: none;
+  /* apilado: imagen arriba (60% del alto), texto abajo */
+  width: min(100cqw - 14px, 90cqh);
+  aspect-ratio: 3 / 2;
+  background: #f1e4cf;
   border-radius: var(--radius);
   border: 4px solid var(--ink);
   box-shadow: 10px 10px 0 var(--purple);
   overflow: hidden;
 }
-.libro .lamina { position: relative; aspect-ratio: 3 / 2; background: #f1e4cf; }
 .libro .lamina img, .libro .lamina .pendiente { width: 100%; height: 100%; object-fit: cover; display: block; }
 .libro .lamina.foto img { object-fit: contain; background: var(--ink); }
 .libro .credito {
@@ -181,20 +191,30 @@ a { color: var(--yellow); }
   background: rgba(26, 0, 51, 0.75);
   color: #fff;
 }
-.libro .credito a { color: #fff; }
-.libro .texto { padding: 24px clamp(18px, 4vw, 40px) 28px; min-height: 9.5em; }
-.libro .num { font-weight: 700; color: var(--pink); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem; }
-.libro h2 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); margin: 4px 0 10px; }
-.libro .texto p { font-size: clamp(1.1rem, 2.6vw, 1.35rem); line-height: 1.5; }
-.libro .texto .btn { margin-top: 18px; }
-
-.controles { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
-.puntos { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; flex: 1; }
-.puntos button {
-  width: 16px; height: 16px; border-radius: 50%;
-  border: 2px solid #fff; background: transparent; cursor: pointer; padding: 0;
+.libro .texto {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: min(100cqw - 14px, 90cqh);
+  overflow: auto;
+  padding: clamp(10px, 2.4cqh, 30px) clamp(14px, 2.4cqw, 34px);
+  background: var(--paper);
+  color: var(--paper-ink);
+  border-radius: var(--radius);
+  border: 4px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--pink);
 }
-.puntos button[aria-current="true"] { background: var(--yellow); border-color: var(--yellow); transform: scale(1.25); }
+.libro .num { font-weight: 700; color: var(--pink); letter-spacing: 0.08em; text-transform: uppercase; font-size: clamp(0.75rem, 1.8cqh, 1.1rem); }
+.libro h2 { font-size: clamp(1.3rem, min(4.4cqh, 4.4cqw), 3rem); line-height: 1.1; margin: 2px 0 0.35em; }
+.libro .texto p { font-size: clamp(1rem, min(3.2cqh, 3.2cqw), 2.2rem); line-height: 1.4; }
+
+/* Pantalla ancha (proyector 16:9): imagen a la izquierda, texto a la derecha */
+@container (min-aspect-ratio: 16 / 10) {
+  .pagina { flex-direction: row; gap: 2.4cqw; }
+  .libro .lamina { width: min(150cqh - 21px, 68cqw); }
+  .libro .texto { flex: 1 1 0; width: auto; max-height: calc(100% - 14px); }
+  .libro h2 { font-size: clamp(1.3rem, min(5.4cqh, 3.2cqw), 3.6rem); }
+  .libro .texto p { font-size: clamp(1rem, min(3.8cqh, 2.2cqw), 2.6rem); }
+}
 
 .entrar { animation: entrar 0.45s ease both; }
 @keyframes entrar { from { opacity: 0; transform: translateY(14px) rotate(-0.5deg); } }
@@ -387,7 +407,6 @@ body.juego .nav { margin-bottom: 10px; }
 .creditos p { line-height: 1.5; margin-bottom: 8px; }
 
 @media (max-width: 640px) {
-  .puntos { order: -1; flex-basis: 100%; }
   .creditos table, .creditos tbody, .creditos tr, .creditos td, .creditos th { display: block; }
   .creditos thead { display: none; }
   .creditos tr { padding: 8px 0; border-bottom: 2px solid #eadbc3; }

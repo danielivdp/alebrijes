@@ -1,4 +1,4 @@
-import { alAvanzar, precargar } from "./presentacion.js?v=6";
+import { alAvanzar, precargar } from "./presentacion.js?v=7";
 
 // Texto adaptado de los artículos "Alebrije" de es.wikipedia.org y en.wikipedia.org (CC BY-SA 4.0).
 const PAGINAS = [
@@ -61,15 +61,11 @@ const PAGINAS = [
       url: "https://commons.wikimedia.org/wiki/File:Alebrijes_monumentales_en_la_CDMX.jpg",
       alt: "Alebrijes monumentales en Paseo de la Reforma, Ciudad de México",
     },
-    accion: { texto: "🎡 Crear mi alebrije", href: "crear.html" },
   },
 ];
 
 const libro = document.getElementById("libro");
-const puntos = document.getElementById("puntos");
-const btnAnterior = document.getElementById("anterior");
-const btnSiguiente = document.getElementById("siguiente");
-const btnLeer = document.getElementById("leer");
+const avance = document.getElementById("avance");
 
 let actual = 0;
 
@@ -101,7 +97,6 @@ function lamina(pagina, numero) {
 }
 
 function mostrar(indice) {
-  speechSynthesis?.cancel();
   actual = Math.max(0, Math.min(PAGINAS.length - 1, indice));
   const pagina = PAGINAS[actual];
 
@@ -113,35 +108,19 @@ function mostrar(indice) {
   const p = document.createElement("p");
   p.textContent = pagina.texto;
   texto.append(h2, p);
-  if (pagina.accion) {
-    const a = document.createElement("a");
-    a.className = "btn";
-    a.href = pagina.accion.href;
-    a.textContent = pagina.accion.texto;
-    texto.append(a);
-  }
 
-  libro.replaceChildren(lamina(pagina, actual + 1), texto);
+  const hoja = document.createElement("div");
+  hoja.className = "pagina";
+  hoja.append(lamina(pagina, actual + 1), texto);
+  libro.replaceChildren(hoja);
   libro.classList.remove("entrar");
   void libro.offsetWidth; // reinicia la animación
   libro.classList.add("entrar");
 
-  btnAnterior.disabled = actual === 0;
-  btnSiguiente.disabled = actual === PAGINAS.length - 1;
-  [...puntos.children].forEach((b, i) => b.setAttribute("aria-current", String(i === actual)));
+  avance.style.width = `${((actual + 1) / PAGINAS.length) * 100}%`;
+  avance.parentElement.setAttribute("aria-valuenow", actual + 1);
   history.replaceState(null, "", `#${actual + 1}`);
 }
-
-PAGINAS.forEach((pagina, i) => {
-  const b = document.createElement("button");
-  b.type = "button";
-  b.setAttribute("aria-label", `Página ${i + 1}: ${pagina.titulo}`);
-  b.addEventListener("click", () => mostrar(i));
-  puntos.append(b);
-});
-
-btnAnterior.addEventListener("click", () => mostrar(actual - 1));
-btnSiguiente.addEventListener("click", () => mostrar(actual + 1));
 
 // Espacio avanza; desde la última página se pasa al juego
 alAvanzar(
@@ -159,19 +138,6 @@ libro.addEventListener("touchend", (e) => {
   if (Math.abs(dx) > 50) mostrar(actual + (dx < 0 ? 1 : -1));
   inicioX = null;
 });
-
-if ("speechSynthesis" in window) {
-  btnLeer.addEventListener("click", () => {
-    speechSynthesis.cancel();
-    const pagina = PAGINAS[actual];
-    const voz = new SpeechSynthesisUtterance(`${pagina.titulo}. ${pagina.texto}`);
-    voz.lang = "es-MX";
-    voz.rate = 0.9;
-    speechSynthesis.speak(voz);
-  });
-} else {
-  btnLeer.classList.add("oculto");
-}
 
 const inicial = parseInt(location.hash.slice(1), 10);
 mostrar(Number.isFinite(inicial) ? inicial - 1 : 0);

@@ -1,7 +1,7 @@
-import { crearRuleta } from "./ruleta.js?v=6";
-import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=6";
-import { lanzarConfeti } from "./confeti.js?v=6";
-import { alAvanzar, precargar } from "./presentacion.js?v=6";
+import { crearRuleta } from "./ruleta.js?v=7";
+import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=7";
+import { lanzarConfeti } from "./confeti.js?v=7";
+import { alAvanzar, precargar } from "./presentacion.js?v=7";
 
 const COLORES_RULETA = ["#ff2e9a", "#ffd000", "#00d98a", "#00c2ff", "#ff7a00", "#b58cff"];
 
