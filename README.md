@@ -1,6 +1,16 @@
 # Alebrijes
 
-A "Hello World" page in the style of Mexican alebrije folk art, served by GitHub Pages.
+Sitio para niños sobre los alebrijes, publicado con GitHub Pages: https://danielivdp.github.io/alebrijes/
 
-- `index.html`: the page, with an inline SVG alebrije
-- `styles.css`: colors, patterns and animations
+| Página | Qué es |
+|---|---|
+| `index.html` | Portada |
+| `cuento.html` + `js/cuento.js` | Cuento de 10 páginas sobre el origen de los alebrijes (texto adaptado de Wikipedia) |
+| `crear.html` + `js/crear.js` | Juego: dos ruletas eligen animales, un dado elige el nombre y una ruleta de colores recolorea el resultado |
+| `creditos.html` | Fuentes y licencias |
+
+Las imágenes viven en `assets/` y las genera Codex con el skill `.agents/skills/alebrije-assets`
+(`$alebrije-assets`). Para ver qué falta: `python3 .agents/skills/alebrije-assets/scripts/check_assets.py`.
+Mientras falte una imagen, el sitio muestra un marcador.
+
+Para probar localmente (el juego necesita servidor por `fetch`): `python3 -m http.server 8000`.

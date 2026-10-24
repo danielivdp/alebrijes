@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El cuento · Alebrijes</title>
+  <meta name="description" content="La historia de los alebrijes contada en diez páginas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐉</text></svg>" />
+  <link rel="stylesheet" href="css/sitio.css" />
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="logo" href="index.html">Alebrijes</a>
+      <ul>
+        <li><a href="cuento.html" aria-current="page">El cuento</a></li>
+        <li><a href="crear.html">Crea tu alebrije</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <article class="libro" id="libro" aria-live="polite"></article>
+
+      <div class="controles">
+        <button class="btn secundario" id="anterior" type="button">← Atrás</button>
+        <div class="puntos" id="puntos" role="group" aria-label="Páginas"></div>
+        <button class="btn" id="siguiente" type="button">Siguiente →</button>
+      </div>
+      <p style="text-align:center;margin-top:16px">
+        <button class="btn secundario" id="leer" type="button">🔊 Leer en voz alta</button>
+      </p>
+    </main>
+  </div>
+  <footer class="pie">Texto adaptado de Wikipedia · <a href="creditos.html">Fuentes y licencias</a></footer>
+  <script type="module" src="js/cuento.js"></script>
+</body>
+</html>

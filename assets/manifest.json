@@ -1,0 +1,11 @@
+{
+  "animales": [
+    { "slug": "ajolote", "nombre": "Ajolote", "en": "axolotl", "emoji": "🦎", "inicio": "Ajo", "fin": "lote" },
+    { "slug": "jaguar", "nombre": "Jaguar", "en": "jaguar", "emoji": "🐆", "inicio": "Jagua", "fin": "guar" },
+    { "slug": "mariposa", "nombre": "Mariposa", "en": "monarch butterfly", "emoji": "🦋", "inicio": "Mari", "fin": "posa" },
+    { "slug": "perro", "nombre": "Perro", "en": "dog", "emoji": "🐶", "inicio": "Perru", "fin": "rro" },
+    { "slug": "tortuga", "nombre": "Tortuga", "en": "sea turtle", "emoji": "🐢", "inicio": "Tortu", "fin": "tuga" },
+    { "slug": "tucan", "nombre": "Tucán", "en": "toucan", "emoji": "🦜", "inicio": "Tuca", "fin": "cán" }
+  ],
+  "paginas_ilustradas": [1, 2, 3, 4, 5, 6, 7, 9]
+}
