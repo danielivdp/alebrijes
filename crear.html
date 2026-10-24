@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crea tu alebrije · Alebrijes</title>
-  <meta name="description" content="Gira las ruletas, lanza el dado y mezcla dos animales para crear tu alebrije." />
+  <meta name="description" content="Gira las ruletas y mezcla dos animales para crear tu alebrije." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐉</text></svg>" />
   <link rel="stylesheet" href="css/sitio.css" />
 </head>
-<body>
+<body class="juego">
   <div class="wrap">
     <nav class="nav" aria-label="Principal">
       <a class="logo" href="index.html">Alebrijes</a>
@@ -22,76 +22,56 @@
       </ul>
     </nav>
 
-    <main class="pasos">
-      <section class="panel" style="--c: var(--pink)">
-        <span class="paso">Paso 1</span>
-        <h2>Gira las ruletas</h2>
-        <p class="ayuda">Cada ruleta elige un animal. ¡Tu alebrije tendrá un poco de los dos!</p>
-        <div class="ruletas">
-          <div class="ruleta-box">
-            <div class="ruleta" id="ruleta-a"></div>
-            <button class="btn" id="girar-a" type="button">🎡 Girar</button>
-            <p class="ruleta-elegido" id="elegido-a" aria-live="polite"></p>
-          </div>
-          <div class="ruleta-box">
-            <div class="ruleta" id="ruleta-b"></div>
-            <button class="btn" id="girar-b" type="button" disabled>🎡 Girar</button>
-            <p class="ruleta-elegido" id="elegido-b" aria-live="polite"></p>
-          </div>
-        </div>
+    <main class="tablero">
+      <section class="casilla area-a">
+        <h2>Animal 1</h2>
+        <div class="ruleta" id="ruleta-a"><img class="medalla" id="medalla-a" alt="" hidden /></div>
+        <p class="ruleta-elegido" id="elegido-a" aria-live="polite"></p>
       </section>
 
-      <section class="panel" style="--c: var(--orange)">
-        <span class="paso">Paso 2</span>
-        <h2>Lanza el dado</h2>
-        <p class="ayuda">El dado decide cómo se llamará tu alebrije.</p>
-        <div class="dado-zona">
-          <div class="dado" id="dado" aria-hidden="true">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          </div>
-          <button class="btn" id="lanzar" type="button" disabled>🎲 Lanzar</button>
-          <p class="nombre-resultado" id="nombre" aria-live="polite"></p>
-        </div>
+      <section class="casilla area-color">
+        <h2>Colores</h2>
+        <div class="ruleta" id="ruleta-color"></div>
+        <p class="ruleta-elegido" id="elegido-color" aria-live="polite"></p>
       </section>
 
-      <section class="panel" style="--c: var(--green)">
-        <span class="paso">Paso 3</span>
-        <h2>¡Mezcla!</h2>
-        <p class="ayuda">Junta a los dos animales y descubre a tu criatura.</p>
-        <div class="mezcla-zona">
-          <figure><canvas class="lienzo" id="lienzo-a" width="512" height="512"></canvas><figcaption id="cap-a">?</figcaption></figure>
-          <span class="signo" aria-hidden="true">+</span>
-          <figure><canvas class="lienzo" id="lienzo-b" width="512" height="512"></canvas><figcaption id="cap-b">?</figcaption></figure>
-          <span class="signo igual" aria-hidden="true">=</span>
-          <figure class="resultado" id="resultado"><canvas class="lienzo" id="lienzo-mezcla" width="1024" height="1024" role="img" aria-label="Tu alebrije"></canvas><figcaption id="cap-mezcla">?</figcaption></figure>
-        </div>
-        <div class="acciones">
-          <button class="btn" id="mezclar" type="button" disabled>✨ ¡Mezclar!</button>
-        </div>
+      <section class="casilla area-b">
+        <h2>Animal 2</h2>
+        <div class="ruleta" id="ruleta-b"><img class="medalla" id="medalla-b" alt="" hidden /></div>
+        <p class="ruleta-elegido" id="elegido-b" aria-live="polite"></p>
       </section>
 
-      <section class="panel oculto" id="panel-color" style="--c: var(--purple)">
-        <span class="paso">Paso 4</span>
-        <h2>Píntalo</h2>
-        <p class="ayuda">Gira la ruleta de colores todas las veces que quieras.</p>
-        <div class="paleta-zona">
-          <div class="ruleta-box">
-            <div class="ruleta" id="ruleta-color"></div>
-            <button class="btn" id="girar-color" type="button">🎨 Girar colores</button>
-            <p class="ruleta-elegido" id="elegido-color" aria-live="polite"></p>
-          </div>
-          <div>
-            <p>Cuando te guste cómo quedó, guárdalo o empieza otra vez.</p>
-            <div class="acciones">
-              <button class="btn" id="descargar" type="button">⬇️ Guardar imagen</button>
-              <button class="btn secundario" id="otra-vez" type="button">🔄 Otra vez</button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div class="area-accion">
+        <button class="btn grande" id="accion" type="button">🎡 Girar animal 1</button>
+        <p class="pista" id="pista">Paso 1 de 4</p>
+      </div>
     </main>
   </div>
-  <footer class="pie">Hecho con 🎨 y mucho color · <a href="creditos.html">Fuentes y licencias</a></footer>
+
+  <dialog class="pop" id="pop-nombre" aria-labelledby="nombre-titulo">
+    <div class="pop-tarjeta">
+      <div class="picado" aria-hidden="true"></div>
+      <p class="pop-sub">Tu alebrije se llama…</p>
+      <h2 class="pop-nombre" id="nombre-titulo"></h2>
+      <p class="pop-mezcla" id="nombre-mezcla"></p>
+      <button class="btn grande" id="a-colores" type="button">🎨 ¡Ahora los colores!</button>
+    </div>
+  </dialog>
+
+  <dialog class="pop" id="pop-alebrije" aria-labelledby="alebrije-titulo">
+    <div class="pop-tarjeta">
+      <div class="picado" aria-hidden="true"></div>
+      <h2 class="pop-nombre chico" id="alebrije-titulo"></h2>
+      <canvas class="lienzo" id="lienzo-mezcla" width="1024" height="1024" role="img"></canvas>
+      <div class="acciones">
+        <button class="btn" id="descargar" type="button">⬇️ Guardar</button>
+        <button class="btn secundario" id="otra-vez" type="button">🔄 Otra vez</button>
+      </div>
+    </div>
+  </dialog>
+
+  <canvas class="confeti" id="confeti" aria-hidden="true"></canvas>
+
   <script type="module" src="js/crear.js"></script>
 </body>
 </html>

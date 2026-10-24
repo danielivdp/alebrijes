@@ -6,7 +6,7 @@ Sitio para niños sobre los alebrijes, publicado con GitHub Pages: https://danie
 |---|---|
 | `index.html` | Portada |
 | `cuento.html` + `js/cuento.js` | Cuento de 10 páginas sobre el origen de los alebrijes (texto adaptado de Wikipedia) |
-| `crear.html` + `js/crear.js` | Juego: dos ruletas eligen animales, un dado elige el nombre y una ruleta de colores recolorea el resultado |
+| `crear.html` + `js/crear.js` | Juego de una pantalla: dos ruletas eligen animales (con revelación del nombre y confeti), una ruleta de colores y la revelación del alebrije |
 | `creditos.html` | Fuentes y licencias |
 
 Las imágenes viven en `assets/` y las genera Codex con el skill `.agents/skills/alebrije-assets`
