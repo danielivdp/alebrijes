@@ -1,3 +1,5 @@
+import { alAvanzar, precargar } from "./presentacion.js?v=6";
+
 // Texto adaptado de los artículos "Alebrije" de es.wikipedia.org y en.wikipedia.org (CC BY-SA 4.0).
 const PAGINAS = [
   {
@@ -141,10 +143,12 @@ PAGINAS.forEach((pagina, i) => {
 btnAnterior.addEventListener("click", () => mostrar(actual - 1));
 btnSiguiente.addEventListener("click", () => mostrar(actual + 1));
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowRight") mostrar(actual + 1);
-  if (e.key === "ArrowLeft") mostrar(actual - 1);
-});
+// Espacio avanza; desde la última página se pasa al juego
+alAvanzar(
+  () => (actual === PAGINAS.length - 1 ? (location.href = "crear.html") : mostrar(actual + 1)),
+  () => mostrar(actual - 1)
+);
+precargar(PAGINAS.map((p) => p.imagen));
 
 // Deslizar con el dedo
 let inicioX = null;

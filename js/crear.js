@@ -1,6 +1,7 @@
-import { crearRuleta } from "./ruleta.js?v=5";
-import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=5";
-import { lanzarConfeti } from "./confeti.js?v=5";
+import { crearRuleta } from "./ruleta.js?v=6";
+import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=6";
+import { lanzarConfeti } from "./confeti.js?v=6";
+import { alAvanzar, precargar } from "./presentacion.js?v=6";
 
 const COLORES_RULETA = ["#ff2e9a", "#ffd000", "#00d98a", "#00c2ff", "#ff7a00", "#b58cff"];
 
@@ -40,6 +41,10 @@ const ruletas = {
 
 let estado;
 let ocupado = false;
+// cada niño crea uno: no se repite una pareja hasta agotar las 15
+const usadas = new Set();
+const pareja = (a, b) => [a.slug, b.slug].sort().join("-");
+const libres = (a) => animales.filter((b) => b !== a && !usadas.has(pareja(a, b)));
 
 function reiniciar() {
   estado = { paso: 0, a: null, b: null, paleta: null, nombre: null, mezcla: null, nombreListo: false };
@@ -68,9 +73,12 @@ async function avanzar() {
   ocupado = true;
   $("accion").disabled = true;
   try {
-    if (estado.paso === 0) await girarAnimal("a", animales);
+    if (estado.paso === 0) {
+      if (!animales.some((a) => libres(a).length)) usadas.clear();
+      await girarAnimal("a", animales.filter((a) => libres(a).length));
+    }
     else if (estado.paso === 1 && estado.nombreListo) aColores();
-    else if (estado.paso === 1) await girarAnimal("b", animales.filter((x) => x.slug !== estado.a.slug));
+    else if (estado.paso === 1) await girarAnimal("b", libres(estado.a));
     else await girarColores();
   } finally {
     ocupado = false;
@@ -79,7 +87,7 @@ async function avanzar() {
 }
 
 async function girarAnimal(lado, opciones) {
-  // la ruleta B nunca cae en el animal de la A
+  // la ruleta B nunca cae en el animal de la A ni en una pareja ya usada
   const animal = opciones[azar(opciones.length)];
   await ruletas[`ruleta-${lado}`].girarA(animales.indexOf(animal));
   estado[lado] = animal;
@@ -93,6 +101,7 @@ async function girarAnimal(lado, opciones) {
     mostrarPaso();
     return;
   }
+  usadas.add(pareja(estado.a, estado.b));
   estado.nombre = estado.a.inicio + estado.b.fin;
   estado.mezcla = prepararMezcla(estado.a, estado.b);
   estado.nombreListo = true;
@@ -201,6 +210,13 @@ $("descargar").addEventListener("click", () => {
 
 $("otra-vez").addEventListener("click", () => $("pop-alebrije").close());
 $("pop-alebrije").addEventListener("close", reiniciar);
+
+// Espacio = siguiente paso; después del alebrije final, empieza otro
+alAvanzar(() => {
+  if ($("pop-alebrije").open) $("pop-alebrije").close();
+  else avanzar();
+});
+precargar(animales.map((a) => `assets/animales/${a.slug}.png`));
 
 function barajar(colores) {
   const c = [...colores];
