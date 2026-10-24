@@ -13,7 +13,7 @@ que no estén en esta tabla (por ejemplo, alebrijes como guías espirituales: es
 | `pagina-02.png` | Pedro enfermo en cama con fiebre, sus hermanas lo cuidan con remedios caseros |
 | `pagina-03.png` | El sueño: un bosque tranquilo con árboles, rocas, nubes y cielo; Pedro camina en calma |
 | `pagina-04.png` | En el sueño los animales se transforman: un burro con alas, un gallo con cuernos de toro, un león con cabeza de perro |
-| `pagina-05.png` | Las criaturas gritan juntas; un hombre tranquilo en un sendero de piedras le señala a Pedro una ventana estrecha como salida |
+| `pagina-05.png` | Las criaturas gritan juntas (alegres, no aterradoras); un hombre común de los años 30 (no santo ni túnica) en un sendero de piedras le señala a Pedro una ventana estrecha, con marco visible, como salida |
 | `pagina-06.png` | Pedro, ya sano, modela criaturas con papel, engrudo y carrizo y las pinta de colores brillantes |
 | `pagina-07.png` | Diego Rivera y Frida Kahlo admiran los alebrijes de Pedro en su taller |
 | `pagina-09.png` | Pedro, ya anciano, recibe el Premio Nacional de Ciencias y Artes (1990); detrás, su hijo y sus nietos siguen haciendo alebrijes de cartón en el taller familiar |
@@ -25,7 +25,8 @@ Use case: illustration-story
 Asset type: full-page illustration for a children's picture book about the origin of alebrijes
 Primary request: <escena de la tabla>
 Scene/backdrop: <lugar de la escena>, Mexico City 1930s where relevant
-Composition/framing: landscape 3:2, leave calm area in the lower third for a short text overlay
+Composition/framing: landscape 3:2, the scene fills the whole frame edge to edge; characters shown full body
+  with feet and furniture legs visible, nothing cut by a horizontal line or band; no empty floor strip
 Lighting/mood: warm, gentle, wonder; never frightening (page 02 must feel caring, not sad)
 <bloque de estilo de estilo.md>
 Avoid: photorealism, likeness claims of real people, anachronistic objects, text in the image
@@ -43,7 +44,7 @@ el mismo Pedro pero mayor: pelo canoso, más arrugas).
 | Fiel a la escena de la tabla | Sin elementos inventados |
 | Pedro consistente entre páginas | Misma ropa, cara y proporciones |
 | Formato | Horizontal 3:2 (p. ej. 1536×1024), fondo opaco |
-| Zona para texto | Tercio inferior sin detalles importantes |
+| Encuadre completo | La escena llena todo el lienzo; sin franja vacía abajo; pies, camas y muebles completos, nada cortado por una línea horizontal |
 | Tono | Apto para niños |
 
 Destino: `assets/cuento/pagina-NN.png`.

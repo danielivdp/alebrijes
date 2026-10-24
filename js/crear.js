@@ -1,6 +1,6 @@
-import { crearRuleta } from "./ruleta.js";
-import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js";
-import { lanzarConfeti } from "./confeti.js";
+import { crearRuleta } from "./ruleta.js?v=5";
+import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=5";
+import { lanzarConfeti } from "./confeti.js?v=5";
 
 const COLORES_RULETA = ["#ff2e9a", "#ffd000", "#00d98a", "#00c2ff", "#ff7a00", "#b58cff"];
 
@@ -14,17 +14,18 @@ const PALETAS = [
   { etiqueta: "Sorpresa", colores: "tono" },
 ];
 
+// Un paso a la vez: solo se ve la ruleta del paso actual
 const PASOS = [
-  { boton: "🎡 Girar animal 1", activa: "ruleta-a" },
-  { boton: "🎡 Girar animal 2", activa: "ruleta-b" },
-  { boton: "🎨 Girar colores", activa: "ruleta-color" },
-  { boton: "✨ ¡Revelar mi alebrije!", activa: null },
+  { titulo: "Paso 1 de 3 · Elige el primer animal", boton: "🎡 Girar", ruleta: "ruleta-a" },
+  { titulo: "Paso 2 de 3 · Elige el segundo animal", boton: "🎡 Girar", ruleta: "ruleta-b" },
+  { titulo: "Paso 3 de 3 · Elige los colores", boton: "🎨 Girar", ruleta: "ruleta-color" },
 ];
 
 const $ = (id) => document.getElementById(id);
 const azar = (n) => Math.floor(Math.random() * n);
+const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 
-const manifiesto = await fetch("assets/manifest.json").then((r) => r.json());
+const manifiesto = await fetch("assets/manifest.json", { cache: "no-cache" }).then((r) => r.json());
 const animales = manifiesto.animales;
 
 const segmentos = animales.map((a, i) => ({ etiqueta: a.nombre, emoji: a.emoji, color: COLORES_RULETA[i % COLORES_RULETA.length] }));
@@ -41,17 +42,25 @@ let estado;
 let ocupado = false;
 
 function reiniciar() {
-  estado = { paso: 0, a: null, b: null, paleta: null, nombre: null, mezcla: null };
-  for (const id of ["elegido-a", "elegido-b", "elegido-color"]) $(id).textContent = "";
+  estado = { paso: 0, a: null, b: null, paleta: null, nombre: null, mezcla: null, nombreListo: false };
   for (const id of ["medalla-a", "medalla-b"]) $(id).hidden = true;
+  ficha("ficha-a", "?", "Animal 1");
+  ficha("ficha-b", "?", "Animal 2");
+  ficha("ficha-nombre", "✨", "¿?");
   mostrarPaso();
 }
 
 function mostrarPaso() {
   const paso = PASOS[estado.paso];
+  $("titulo-paso").textContent = paso.titulo;
   $("accion").textContent = paso.boton;
-  $("pista").textContent = `Paso ${estado.paso + 1} de ${PASOS.length}`;
-  for (const id of Object.keys(ruletas)) $(id).classList.toggle("activa", id === paso.activa);
+  $("elegido").textContent = "";
+  $("escenario").classList.remove("duo");
+  $("nombre-revelado").hidden = true;
+  for (const id of Object.keys(ruletas)) $(id).hidden = id !== paso.ruleta;
+  for (const [i, id] of ["ficha-a", "ficha-b", "ficha-nombre"].entries()) {
+    $(id).classList.toggle("actual", i === estado.paso);
+  }
 }
 
 async function avanzar() {
@@ -60,9 +69,9 @@ async function avanzar() {
   $("accion").disabled = true;
   try {
     if (estado.paso === 0) await girarAnimal("a", animales);
+    else if (estado.paso === 1 && estado.nombreListo) aColores();
     else if (estado.paso === 1) await girarAnimal("b", animales.filter((x) => x.slug !== estado.a.slug));
-    else if (estado.paso === 2) await girarColores();
-    else await revelar();
+    else await girarColores();
   } finally {
     ocupado = false;
     $("accion").disabled = false;
@@ -75,7 +84,9 @@ async function girarAnimal(lado, opciones) {
   await ruletas[`ruleta-${lado}`].girarA(animales.indexOf(animal));
   estado[lado] = animal;
   mostrarMedalla($(`medalla-${lado}`), animal);
-  $(`elegido-${lado}`).textContent = animal.nombre;
+  $("elegido").textContent = `¡${animal.nombre}!`;
+  ficha(`ficha-${lado}`, imagenAnimal(animal), animal.nombre);
+  await esperar(1400);
 
   if (lado === "a") {
     estado.paso = 1;
@@ -84,25 +95,39 @@ async function girarAnimal(lado, opciones) {
   }
   estado.nombre = estado.a.inicio + estado.b.fin;
   estado.mezcla = prepararMezcla(estado.a, estado.b);
-  await esperar(500);
-  $("nombre-titulo").textContent = `¡${estado.nombre}!`;
-  $("nombre-mezcla").textContent = `${estado.a.nombre} + ${estado.b.nombre}`;
-  abrir($("pop-nombre"));
+  estado.nombreListo = true;
+  revelarNombre();
 }
 
-$("a-colores").addEventListener("click", () => {
-  $("pop-nombre").close();
+// El nombre se revela en la misma pantalla, junto a las dos ruedas con sus animales
+function revelarNombre() {
+  $("titulo-paso").textContent = "Tu alebrije se llama…";
+  $("ruleta-a").hidden = false;
+  $("escenario").classList.add("duo");
+  const nombre = $("nombre-revelado");
+  nombre.textContent = `¡${estado.nombre}!`;
+  nombre.style.setProperty("--letras", estado.nombre.length + 2);
+  nombre.hidden = false;
+  $("accion").textContent = "🎨 ¡Ahora los colores!";
+  ficha("ficha-nombre", "✨", estado.nombre);
+  $("ficha-b").classList.remove("actual");
+  $("ficha-nombre").classList.add("actual");
+  document.body.append($("confeti"));
+  lanzarConfeti($("confeti"));
+}
+
+function aColores() {
   estado.paso = 2;
   mostrarPaso();
-});
+}
 
 async function girarColores() {
   const i = azar(PALETAS.length);
   await ruletas["ruleta-color"].girarA(i);
   estado.paleta = PALETAS[i];
-  $("elegido-color").textContent = estado.paleta.etiqueta;
-  estado.paso = 3;
-  mostrarPaso();
+  $("elegido").textContent = `¡${estado.paleta.etiqueta}!`;
+  await esperar(900);
+  await revelar();
 }
 
 async function revelar() {
@@ -114,7 +139,7 @@ async function revelar() {
   const lienzo = $("lienzo-mezcla");
   lienzo.getContext("2d").putImageData(datos, 0, 0);
   lienzo.setAttribute("aria-label", `Tu alebrije ${estado.nombre}, mezcla de ${estado.a.nombre} y ${estado.b.nombre}`);
-  $("alebrije-titulo").textContent = estado.nombre;
+  $("alebrije-titulo").textContent = `¡${estado.nombre}!`;
   abrir($("pop-alebrije"));
 }
 
@@ -148,12 +173,21 @@ function mostrarMedalla(img, animal) {
   img.classList.add("aparece");
 }
 
-$("accion").addEventListener("click", avanzar);
-for (const id of Object.keys(ruletas)) {
-  $(id).addEventListener("click", () => {
-    if ($(id).classList.contains("activa")) avanzar();
-  });
+function imagenAnimal(animal) {
+  const img = new Image();
+  img.src = `assets/animales/${animal.slug}.png`;
+  img.alt = "";
+  return img;
 }
+
+function ficha(id, contenido, texto) {
+  const caja = $(id).querySelector(".ficha-img");
+  caja.replaceChildren(contenido);
+  $(id).querySelector(".ficha-txt").textContent = texto;
+}
+
+$("accion").addEventListener("click", avanzar);
+for (const id of Object.keys(ruletas)) $(id).addEventListener("click", avanzar);
 
 $("descargar").addEventListener("click", () => {
   $("lienzo-mezcla").toBlob((blob) => {
@@ -165,16 +199,8 @@ $("descargar").addEventListener("click", () => {
   });
 });
 
-$("otra-vez").addEventListener("click", () => {
-  $("pop-alebrije").close();
-  reiniciar();
-});
-
-// Esc cierra el diálogo; el juego sigue en el paso que corresponde
-$("pop-nombre").addEventListener("cancel", () => {
-  estado.paso = 2;
-  mostrarPaso();
-});
+$("otra-vez").addEventListener("click", () => $("pop-alebrije").close());
+$("pop-alebrije").addEventListener("close", reiniciar);
 
 function barajar(colores) {
   const c = [...colores];
@@ -184,8 +210,6 @@ function barajar(colores) {
   }
   return c;
 }
-
-const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function cargarImagen(src) {
   return new Promise((resolver) => {

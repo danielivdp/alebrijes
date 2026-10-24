@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐉</text></svg>" />
-  <link rel="stylesheet" href="css/sitio.css" />
+  <link rel="stylesheet" href="css/sitio.css?v=5" />
 </head>
 <body class="juego">
   <div class="wrap">
@@ -22,41 +22,27 @@
       </ul>
     </nav>
 
-    <main class="tablero">
-      <section class="casilla area-a">
-        <h2>Animal 1</h2>
+    <ol class="progreso" aria-label="Tu alebrije hasta ahora">
+      <li class="ficha" id="ficha-a"><span class="ficha-img">?</span><span class="ficha-txt">Animal 1</span></li>
+      <li class="signo" aria-hidden="true">+</li>
+      <li class="ficha" id="ficha-b"><span class="ficha-img">?</span><span class="ficha-txt">Animal 2</span></li>
+      <li class="signo" aria-hidden="true">=</li>
+      <li class="ficha" id="ficha-nombre"><span class="ficha-img">✨</span><span class="ficha-txt">¿?</span></li>
+    </ol>
+
+    <main class="escenario" id="escenario">
+      <h2 class="titulo-paso" id="titulo-paso"></h2>
+      <div class="ruedas">
         <div class="ruleta" id="ruleta-a"><img class="medalla" id="medalla-a" alt="" hidden /></div>
-        <p class="ruleta-elegido" id="elegido-a" aria-live="polite"></p>
-      </section>
-
-      <section class="casilla area-color">
-        <h2>Colores</h2>
-        <div class="ruleta" id="ruleta-color"></div>
-        <p class="ruleta-elegido" id="elegido-color" aria-live="polite"></p>
-      </section>
-
-      <section class="casilla area-b">
-        <h2>Animal 2</h2>
-        <div class="ruleta" id="ruleta-b"><img class="medalla" id="medalla-b" alt="" hidden /></div>
-        <p class="ruleta-elegido" id="elegido-b" aria-live="polite"></p>
-      </section>
-
-      <div class="area-accion">
-        <button class="btn grande" id="accion" type="button">🎡 Girar animal 1</button>
-        <p class="pista" id="pista">Paso 1 de 4</p>
+        <span class="signo-duo" aria-hidden="true">+</span>
+        <div class="ruleta" id="ruleta-b" hidden><img class="medalla" id="medalla-b" alt="" hidden /></div>
+        <div class="ruleta" id="ruleta-color" hidden></div>
       </div>
+      <p class="nombre-revelado" id="nombre-revelado" aria-live="polite" hidden></p>
+      <p class="ruleta-elegido" id="elegido" aria-live="polite"></p>
+      <button class="btn grande" id="accion" type="button"></button>
     </main>
   </div>
-
-  <dialog class="pop" id="pop-nombre" aria-labelledby="nombre-titulo">
-    <div class="pop-tarjeta">
-      <div class="picado" aria-hidden="true"></div>
-      <p class="pop-sub">Tu alebrije se llama…</p>
-      <h2 class="pop-nombre" id="nombre-titulo"></h2>
-      <p class="pop-mezcla" id="nombre-mezcla"></p>
-      <button class="btn grande" id="a-colores" type="button">🎨 ¡Ahora los colores!</button>
-    </div>
-  </dialog>
 
   <dialog class="pop" id="pop-alebrije" aria-labelledby="alebrije-titulo">
     <div class="pop-tarjeta">
@@ -64,14 +50,14 @@
       <h2 class="pop-nombre chico" id="alebrije-titulo"></h2>
       <canvas class="lienzo" id="lienzo-mezcla" width="1024" height="1024" role="img"></canvas>
       <div class="acciones">
-        <button class="btn" id="descargar" type="button">⬇️ Guardar</button>
-        <button class="btn secundario" id="otra-vez" type="button">🔄 Otra vez</button>
+        <button class="btn grande" id="otra-vez" type="button">🔄 Hacer otro alebrije</button>
+        <button class="btn secundario" id="descargar" type="button">⬇️ Guardar</button>
       </div>
     </div>
   </dialog>
 
   <canvas class="confeti" id="confeti" aria-hidden="true"></canvas>
 
-  <script type="module" src="js/crear.js"></script>
+  <script type="module" src="js/crear.js?v=5"></script>
 </body>
 </html>
