@@ -70,15 +70,45 @@ function cercano(centros, p) {
 export function aplicarPaleta(original, grupos, colores) {
   const salida = new ImageData(new Uint8ClampedArray(original.data), original.width, original.height);
   const d = salida.data;
+  const { width: W, height: H } = original;
   const destino = colores.map(hexARgb);
   const lumGrupo = grupos.map((g) => lum(...g));
-  for (let i = 0; i < d.length; i += 4) {
-    if (d[i + 3] === 0) continue;
-    const l = lum(d[i], d[i + 1], d[i + 2]);
-    if (l < OSCURO) continue;
-    const g = cercano(grupos, [d[i], d[i + 1], d[i + 2]]);
+
+  // grupo de cada píxel (-1 = transparente o contorno, no se toca)
+  const etiquetas = new Int8Array(W * H).fill(-1);
+  for (let p = 0; p < W * H; p++) {
+    const i = p * 4;
+    if (d[i + 3] === 0 || lum(d[i], d[i + 1], d[i + 2]) < OSCURO) continue;
+    etiquetas[p] = cercano(grupos, [d[i], d[i + 1], d[i + 2]]);
+  }
+
+  // Filtro de mayoría 5×5: los píxeles de transición entre dos colores caían en un tercer
+  // grupo y dejaban motas; cada píxel toma el grupo que domina a su alrededor
+  const filtradas = new Int8Array(etiquetas);
+  const conteo = new Uint8Array(grupos.length);
+  for (let y = 2; y < H - 2; y++) {
+    for (let x = 2; x < W - 2; x++) {
+      const p = y * W + x;
+      if (etiquetas[p] < 0) continue;
+      conteo.fill(0);
+      for (let dy = -2; dy <= 2; dy++) {
+        for (let dx = -2; dx <= 2; dx++) {
+          const e = etiquetas[p + dy * W + dx];
+          if (e >= 0) conteo[e]++;
+        }
+      }
+      let mejor = etiquetas[p];
+      for (let k = 0; k < conteo.length; k++) if (conteo[k] > conteo[mejor]) mejor = k;
+      filtradas[p] = mejor;
+    }
+  }
+
+  for (let p = 0; p < W * H; p++) {
+    const g = filtradas[p];
+    if (g < 0) continue;
+    const i = p * 4;
     // conserva el oscurecimiento de los bordes suavizados hacia el contorno
-    const f = Math.min(1.15, l / Math.max(1, lumGrupo[g]));
+    const f = Math.min(1.1, lum(d[i], d[i + 1], d[i + 2]) / Math.max(1, lumGrupo[g]));
     const c = destino[g % destino.length];
     d[i] = c[0] * f; d[i + 1] = c[1] * f; d[i + 2] = c[2] * f;
   }

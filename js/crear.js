@@ -1,7 +1,7 @@
-import { crearRuleta } from "./ruleta.js?v=7";
-import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=7";
-import { lanzarConfeti } from "./confeti.js?v=7";
-import { alAvanzar, precargar } from "./presentacion.js?v=7";
+import { crearRuleta } from "./ruleta.js?v=9";
+import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=9";
+import { lanzarConfeti } from "./confeti.js?v=9";
+import { alAvanzar, precargar } from "./presentacion.js?v=9";
 
 const COLORES_RULETA = ["#ff2e9a", "#ffd000", "#00d98a", "#00c2ff", "#ff7a00", "#b58cff"];
 
@@ -11,7 +11,8 @@ const PALETAS = [
   { etiqueta: "Oaxaca", colores: ["#e6332a", "#ffb000", "#00a6a6", "#7b2ff7", "#ff5fa2", "#2bb24c"] },
   { etiqueta: "Noche", colores: ["#3b2cc2", "#ff2e9a", "#ffd000", "#00c2ff", "#8a1cff", "#ff7a00"] },
   { etiqueta: "Selva", colores: ["#1f9e45", "#ffd000", "#ff6a00", "#00b3a4", "#c1e000", "#e6332a"] },
-  { etiqueta: "Mar", colores: ["#0077d9", "#00d4c8", "#ffffff", "#7ad3ff", "#ffcf3a", "#ff7aa8"] },
+  // sin blanco: sobre el fondo crema parece un hueco
+  { etiqueta: "Mar", colores: ["#0077d9", "#00d4c8", "#ff8f5c", "#7ad3ff", "#ffcf3a", "#ff7aa8"] },
   { etiqueta: "Sorpresa", colores: "tono" },
 ];
 
@@ -172,14 +173,15 @@ function abrir(dialogo) {
   lanzarConfeti($("confeti"));
 }
 
-function mostrarMedalla(img, animal) {
-  img.hidden = false;
+function mostrarMedalla(medalla, animal) {
+  const img = medalla.querySelector("img");
+  medalla.hidden = false;
   img.alt = animal.nombre;
-  img.onerror = () => { img.hidden = true; };
+  img.onerror = () => { medalla.hidden = true; };
   img.src = `assets/animales/${animal.slug}.png`;
-  img.classList.remove("aparece");
-  void img.offsetWidth; // reinicia la animación
-  img.classList.add("aparece");
+  medalla.classList.remove("aparece");
+  void medalla.offsetWidth; // reinicia la animación
+  medalla.classList.add("aparece");
 }
 
 function imagenAnimal(animal) {

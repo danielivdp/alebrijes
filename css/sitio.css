@@ -310,16 +310,16 @@ body.juego .nav { margin-bottom: 10px; }
   position: absolute;
   z-index: 1;
   inset: 12%;
-  width: 76%;
-  height: 76%;
-  object-fit: contain;
-  /* el cuadrado de la imagen debe caber dentro del círculo: lado = diámetro / √2 */
-  padding: 12%;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
   background: var(--paper);
   border: 5px solid var(--ink);
   box-shadow: 0 0 0 5px var(--yellow);
 }
+/* la imagen va dentro del círculo y no lleva border-radius: un <img> redondeado recorta su
+   contenido a un círculo del tamaño interior (sin el padding) y cortaba colas y cabezas */
+.medalla img { width: 74%; height: 74%; object-fit: contain; }
 .medalla[hidden] { display: none; }
 .medalla.aparece { animation: aparece 0.6s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
 @keyframes aparece { from { transform: scale(0) rotate(-30deg); } }
