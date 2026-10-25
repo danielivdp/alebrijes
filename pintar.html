@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡A pintar! · Alebrijes</title>
+  <meta name="description" content="Pinta tu propio alebrije y conviértelo en un marcapáginas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&family=Baloo+2:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐉</text></svg>" />
+  <link rel="stylesheet" href="css/sitio.css?v=10" />
+</head>
+<body class="taller">
+  <div class="wrap">
+    <header class="taller-titulo">
+      <h1>¡Ahora pinta tu propio alebrije!</h1>
+      <p>Lo convertiremos en un marcapáginas 🔖</p>
+    </header>
+
+    <ol class="pasos">
+      <li class="paso" style="--c: var(--pink)">
+        <span class="paso-num">1</span>
+        <span class="paso-icono" aria-hidden="true">🖍️</span>
+        <p>Pinta tu alebrije con muchos colores</p>
+        <span class="quien">Tú</span>
+      </li>
+      <li class="paso" style="--c: var(--yellow)">
+        <span class="paso-num">2</span>
+        <span class="paso-icono" aria-hidden="true">✋</span>
+        <p>Entrégalo para plastificarlo</p>
+        <span class="quien adulto">Un adulto</span>
+      </li>
+      <li class="paso" style="--c: var(--green)">
+        <span class="paso-num">3</span>
+        <span class="paso-icono" aria-hidden="true">✂️</span>
+        <p>Lo recortamos, le hacemos un hoyito y te lo devolvemos</p>
+        <span class="quien adulto">Un adulto</span>
+      </li>
+      <li class="paso" style="--c: var(--blue)">
+        <span class="paso-num">4</span>
+        <span class="paso-icono" aria-hidden="true">🧶</span>
+        <p>Elige una cuerda de tu color favorito</p>
+        <span class="quien">Tú</span>
+      </li>
+      <li class="paso" style="--c: var(--orange)">
+        <span class="paso-num">5</span>
+        <span class="paso-icono" aria-hidden="true">🔖</span>
+        <p>Pasa la cuerda por el hoyito ¡y listo tu marcapáginas!</p>
+        <span class="quien">Tú</span>
+      </li>
+    </ol>
+
+    <div class="desfile" aria-hidden="true">
+      <img src="assets/animales/ajolote.png" alt="" />
+      <img src="assets/animales/jaguar.png" alt="" />
+      <img src="assets/animales/mariposa.png" alt="" />
+      <img src="assets/animales/perro.png" alt="" />
+      <img src="assets/animales/tortuga.png" alt="" />
+      <img src="assets/animales/tucan.png" alt="" />
+    </div>
+  </div>
+
+  <script type="module">
+    import { alAvanzar } from "./js/presentacion.js?v=10";
+    // pantalla fija: el espacio no hace nada, ← vuelve al juego
+    alAvanzar(() => {}, () => { location.href = "crear.html"; });
+
+    // queda puesta toda la actividad: que el computador no apague la pantalla
+    let candado = null;
+    async function mantenerEncendida() {
+      try { candado = await navigator.wakeLock?.request("screen"); } catch { /* sin permiso o sin soporte */ }
+    }
+    const reintentar = () => { if (!candado || candado.released) mantenerEncendida(); };
+    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") reintentar(); });
+    // algunos navegadores lo piden tras una tecla o un clic
+    addEventListener("keydown", reintentar);
+    addEventListener("pointerdown", reintentar);
+    mantenerEncendida();
+  </script>
+</body>
+</html>

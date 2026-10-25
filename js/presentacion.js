@@ -10,6 +10,11 @@ export function alAvanzar(siguiente, anterior = () => {}) {
       location.href = "index.html";
       return;
     }
+    // Fin: salta a la pantalla del taller de pintura, desde cualquier parte
+    if (e.key === "End") {
+      location.href = "pintar.html";
+      return;
+    }
     const atras = ANTERIOR.has(e.key) || (e.key === " " && e.shiftKey);
     if (!atras && !SIGUIENTE.has(e.key)) return;
     e.preventDefault();

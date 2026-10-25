@@ -1,4 +1,4 @@
-import { alAvanzar, precargar } from "./presentacion.js?v=9";
+import { alAvanzar, precargar } from "./presentacion.js?v=10";
 
 // Texto adaptado de los artículos "Alebrije" de es.wikipedia.org y en.wikipedia.org (CC BY-SA 4.0).
 const PAGINAS = [
