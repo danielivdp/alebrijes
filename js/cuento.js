@@ -1,68 +1,8 @@
-import { alAvanzar, precargar } from "./presentacion.js?v=10";
+import { alAvanzar, precargar } from "./presentacion.js?v=12";
 
-// Texto adaptado de los artículos "Alebrije" de es.wikipedia.org y en.wikipedia.org (CC BY-SA 4.0).
-const PAGINAS = [
-  {
-    titulo: "Don Pedro, el cartonero",
-    texto: "Hace mucho tiempo, en la Ciudad de México, vivía Don Pedro Linares. Era cartonero: con papel y engrudo hacía piñatas y máscaras que vendía en el mercado de La Merced.",
-    imagen: "assets/cuento/pagina-01.png",
-  },
-  {
-    titulo: "Una fiebre muy fuerte",
-    texto: "En 1936, cuando tenía 30 años, Pedro se enfermó con una fiebre muy alta. Se quedó profundamente dormido y sus hermanas lo cuidaban con remedios caseros.",
-    imagen: "assets/cuento/pagina-02.png",
-  },
-  {
-    titulo: "El bosque del sueño",
-    texto: "Mientras dormía, Pedro soñó con un bosque muy tranquilo, con árboles, rocas, nubes y cielo. Ahí no le dolía nada y se sentía feliz.",
-    imagen: "assets/cuento/pagina-03.png",
-  },
-  {
-    titulo: "¡Los animales cambian!",
-    texto: "De pronto, los animales del bosque se transformaron en criaturas rarísimas: un burro con alas, un gallo con cuernos de toro y un león con cabeza de perro.",
-    imagen: "assets/cuento/pagina-04.png",
-  },
-  {
-    titulo: "«¡Alebrijes! ¡Alebrijes!»",
-    texto: "Todas las criaturas gritaban la misma palabra: «¡Alebrijes!». Un señor que caminaba por un sendero de piedras le dijo que todavía no debía estar ahí y le mostró una ventanita para salir.",
-    imagen: "assets/cuento/pagina-05.png",
-  },
-  {
-    titulo: "De papel y colores",
-    texto: "Pedro despertó sano. Para que todos conocieran a las criaturas de su sueño, las hizo de papel y cartón, y las pintó de colores brillantes, tal como las había visto.",
-    imagen: "assets/cuento/pagina-06.png",
-  },
-  {
-    titulo: "Diego y Frida",
-    texto: "Los pintores Diego Rivera y Frida Kahlo conocieron su trabajo y le encargaron más alebrijes. Algunos de los que hizo para Diego Rivera hoy están en el Museo Anahuacalli.",
-    imagen: "assets/cuento/pagina-07.png",
-  },
-  {
-    titulo: "Alebrijes de madera",
-    texto: "Los alebrijes llegaron a Oaxaca. Ahí, Manuel Jiménez y otros artesanos de Arrazola y San Martín Tilcajete empezaron a tallarlos en madera de copal.",
-    imagen: "assets/fotos/tallado-arrazola.jpg",
-    foto: {
-      texto: "Foto: Nsaum75, CC BY-SA 4.0",
-      url: "https://commons.wikimedia.org/wiki/File:Alebrije_Carving_in_Arrazola.jpg",
-      alt: "Un alebrije tallándose en madera de copal en Arrazola, Oaxaca",
-    },
-  },
-  {
-    titulo: "Un premio y una familia",
-    texto: "En 1990, Pedro recibió el Premio Nacional de Ciencias y Artes por su creación. Murió en 1992, pero su hijo y sus nietos siguen haciendo alebrijes hasta hoy.",
-    imagen: "assets/cuento/pagina-09.png",
-  },
-  {
-    titulo: "La Noche de los Alebrijes",
-    texto: "Desde 2007, en la Ciudad de México se hace un desfile de alebrijes gigantes. No hay dos alebrijes iguales… ¿y si inventas el tuyo?",
-    imagen: "assets/fotos/alebrijes-monumentales.jpg",
-    foto: {
-      texto: "Foto: Secretaría de Cultura de la Ciudad de México, CC BY 2.0",
-      url: "https://commons.wikimedia.org/wiki/File:Alebrijes_monumentales_en_la_CDMX.jpg",
-      alt: "Alebrijes monumentales en Paseo de la Reforma, Ciudad de México",
-    },
-  },
-];
+// El texto vive en assets/cuento.json, compartido con la app de Apple TV (tvos/).
+const { paginas } = await fetch("assets/cuento.json", { cache: "no-cache" }).then((r) => r.json());
+const PAGINAS = paginas.map((p) => ({ ...p, imagen: `assets/${p.imagen}` }));
 
 const libro = document.getElementById("libro");
 const avance = document.getElementById("avance");
@@ -105,9 +45,12 @@ function mostrar(indice) {
   texto.innerHTML = `<p class="num">Página ${actual + 1} de ${PAGINAS.length}</p>`;
   const h2 = document.createElement("h2");
   h2.textContent = pagina.titulo;
-  const p = document.createElement("p");
-  p.textContent = pagina.texto;
-  texto.append(h2, p);
+  texto.append(h2);
+  for (const parrafo of pagina.texto) {
+    const p = document.createElement("p");
+    p.textContent = parrafo;
+    texto.append(p);
+  }
 
   const hoja = document.createElement("div");
   hoja.className = "pagina";

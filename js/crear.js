@@ -1,20 +1,9 @@
-import { crearRuleta } from "./ruleta.js?v=10";
-import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=10";
-import { lanzarConfeti } from "./confeti.js?v=10";
-import { alAvanzar, precargar } from "./presentacion.js?v=10";
+import { crearRuleta } from "./ruleta.js?v=12";
+import { agrupar, aplicarPaleta, rotarTono } from "./recolor.js?v=12";
+import { lanzarConfeti } from "./confeti.js?v=12";
+import { alAvanzar, precargar } from "./presentacion.js?v=12";
 
 const COLORES_RULETA = ["#ff2e9a", "#ffd000", "#00d98a", "#00c2ff", "#ff7a00", "#b58cff"];
-
-// "Sorpresa" no tiene colores: rota el tono de toda la imagen al azar
-const PALETAS = [
-  { etiqueta: "Original", colores: null },
-  { etiqueta: "Oaxaca", colores: ["#e6332a", "#ffb000", "#00a6a6", "#7b2ff7", "#ff5fa2", "#2bb24c"] },
-  { etiqueta: "Noche", colores: ["#3b2cc2", "#ff2e9a", "#ffd000", "#00c2ff", "#8a1cff", "#ff7a00"] },
-  { etiqueta: "Selva", colores: ["#1f9e45", "#ffd000", "#ff6a00", "#00b3a4", "#c1e000", "#e6332a"] },
-  // sin blanco: sobre el fondo crema parece un hueco
-  { etiqueta: "Mar", colores: ["#0077d9", "#00d4c8", "#ff8f5c", "#7ad3ff", "#ffcf3a", "#ff7aa8"] },
-  { etiqueta: "Sorpresa", colores: "tono" },
-];
 
 // Un paso a la vez: solo se ve la ruleta del paso actual
 const PASOS = [
@@ -29,6 +18,8 @@ const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const manifiesto = await fetch("assets/manifest.json", { cache: "no-cache" }).then((r) => r.json());
 const animales = manifiesto.animales;
+// "Sorpresa" no tiene colores: rota el tono de toda la imagen al azar
+const PALETAS = manifiesto.paletas;
 
 const segmentos = animales.map((a, i) => ({ etiqueta: a.nombre, emoji: a.emoji, color: COLORES_RULETA[i % COLORES_RULETA.length] }));
 const ruletas = {

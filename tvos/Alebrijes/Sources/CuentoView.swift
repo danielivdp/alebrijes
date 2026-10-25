@@ -53,8 +53,9 @@ struct CuentoView: View {
     private var libro: some View {
         Papel {
             HStack(spacing: 0) {
+                // imagen y texto mitad y mitad, como en la web
                 lamina
-                    .frame(width: 1020, height: 680)
+                    .frame(width: 840, height: 560)
                     .clipped()
                 VStack(alignment: .leading, spacing: 20) {
                     Text("PÁGINA \(actual + 1) DE \(paginas.count)")
@@ -64,10 +65,13 @@ struct CuentoView: View {
                     Text(pagina.titulo)
                         .font(Tema.letra(56, .heavy))
                         .fixedSize(horizontal: false, vertical: true)
-                    Text(pagina.texto)
-                        .font(Tema.letra(34, .regular))
-                        .lineSpacing(8)
-                        .fixedSize(horizontal: false, vertical: true)
+                    // el tamaño de letra más grande con el que cabe la página entera
+                    ViewThatFits(in: .vertical) {
+                        parrafos(34)
+                        parrafos(30)
+                        parrafos(27)
+                        parrafos(24)
+                    }
                     Spacer(minLength: 0)
                     if esUltima {
                         Text("Presiona el botón para 🎡 crear tu alebrije")
@@ -76,7 +80,7 @@ struct CuentoView: View {
                     }
                 }
                 .padding(44)
-                .frame(width: 640, height: 680, alignment: .topLeading)
+                .frame(width: 820, height: 680, alignment: .topLeading)
             }
         }
         .id(actual)
@@ -84,6 +88,17 @@ struct CuentoView: View {
             insertion: .move(edge: haciaAdelante ? .trailing : .leading).combined(with: .opacity),
             removal: .move(edge: haciaAdelante ? .leading : .trailing).combined(with: .opacity)
         ))
+    }
+
+    private func parrafos(_ tamano: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: tamano * 0.6) {
+            ForEach(pagina.texto, id: \.self) { parrafo in
+                Text(parrafo)
+                    .font(Tema.letra(tamano, .regular))
+                    .lineSpacing(tamano * 0.2)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
     }
 
     @ViewBuilder
@@ -130,7 +145,7 @@ struct CuentoView: View {
             voz.stopSpeaking(at: .immediate)
             return
         }
-        let frase = AVSpeechUtterance(string: "\(pagina.titulo). \(pagina.texto)")
+        let frase = AVSpeechUtterance(string: "\(pagina.titulo). \(pagina.texto.joined(separator: " "))")
         frase.voice = AVSpeechSynthesisVoice(language: "es-MX")
         frase.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
         voz.speak(frase)

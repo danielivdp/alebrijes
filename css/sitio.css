@@ -169,8 +169,8 @@ body.cuento { height: 100dvh; overflow: hidden; }
 .libro .lamina {
   position: relative;
   flex: none;
-  /* apilado: imagen arriba (60% del alto), texto abajo */
-  width: min(100cqw - 14px, 90cqh);
+  /* apilado: imagen arriba (40% del alto), texto abajo */
+  width: min(100cqw - 14px, 58cqh);
   aspect-ratio: 3 / 2;
   background: #f1e4cf;
   border-radius: var(--radius);
@@ -194,7 +194,7 @@ body.cuento { height: 100dvh; overflow: hidden; }
 .libro .texto {
   flex: 1 1 auto;
   min-height: 0;
-  width: min(100cqw - 14px, 90cqh);
+  width: min(100cqw - 14px, 58cqh);
   overflow: auto;
   padding: clamp(10px, 2.4cqh, 30px) clamp(14px, 2.4cqw, 34px);
   background: var(--paper);
@@ -205,15 +205,17 @@ body.cuento { height: 100dvh; overflow: hidden; }
 }
 .libro .num { font-weight: 700; color: var(--pink); letter-spacing: 0.08em; text-transform: uppercase; font-size: clamp(0.75rem, 1.8cqh, 1.1rem); }
 .libro h2 { font-size: clamp(1.3rem, min(4.4cqh, 4.4cqw), 3rem); line-height: 1.1; margin: 2px 0 0.35em; }
-.libro .texto p { font-size: clamp(1rem, min(3.2cqh, 3.2cqw), 2.2rem); line-height: 1.4; }
+.libro .texto p { font-size: clamp(1rem, min(2.6cqh, 3.4cqw), 2rem); line-height: 1.35; }
+.libro .texto p + p { margin-top: 0.55em; }
 
-/* Pantalla ancha (proyector 16:9): imagen a la izquierda, texto a la derecha */
-@container (min-aspect-ratio: 16 / 10) {
+/* Pantalla ancha (proyector 16:9 o 4:3): imagen a la izquierda, texto a la derecha */
+@container (min-aspect-ratio: 5 / 4) {
   .pagina { flex-direction: row; gap: 2.4cqw; }
-  .libro .lamina { width: min(150cqh - 21px, 68cqw); }
+  /* imagen y texto mitad y mitad */
+  .libro .lamina { width: min(150cqh - 21px, 52cqw); }
   .libro .texto { flex: 1 1 0; width: auto; max-height: calc(100% - 14px); }
-  .libro h2 { font-size: clamp(1.3rem, min(5.4cqh, 3.2cqw), 3.6rem); }
-  .libro .texto p { font-size: clamp(1rem, min(3.8cqh, 2.2cqw), 2.6rem); }
+  .libro h2 { font-size: clamp(1.3rem, min(5cqh, 2.8cqw), 3.4rem); }
+  .libro .texto p { font-size: clamp(1rem, min(3.3cqh, 1.85cqw), 2.3rem); }
 }
 
 .entrar { animation: entrar 0.45s ease both; }
@@ -457,6 +459,7 @@ body.taller .wrap { height: 100%; max-width: none; display: flex; flex-direction
   font: 800 clamp(1.4rem, 4.4dvh, 2.6rem) / 1 "Baloo 2", sans-serif;
 }
 .paso-icono { margin-top: auto; font-size: clamp(2.6rem, min(18dvh, 8vw), 12rem); line-height: 1; }
+.paso-icono svg { display: block; width: 1.15em; height: 1.15em; }
 .paso p { font-size: clamp(1rem, min(4.4dvh, 2.2vw), 2.8rem); font-weight: 700; line-height: 1.2; }
 .quien { margin-top: auto; padding: 4px 14px; border-radius: 999px; background: var(--c); border: 3px solid var(--ink); font-weight: 700; font-size: clamp(0.9rem, min(2.6dvh, 1.3vw), 1.6rem); }
 .quien.adulto { background: var(--ink); color: #fff; }

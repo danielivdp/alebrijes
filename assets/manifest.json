@@ -7,5 +7,13 @@
     { "slug": "tortuga", "nombre": "Tortuga", "en": "sea turtle", "emoji": "🐢", "inicio": "Tortu", "fin": "tuga" },
     { "slug": "tucan", "nombre": "Tucán", "en": "toucan", "emoji": "🦜", "inicio": "Tuca", "fin": "cán" }
   ],
-  "paginas_ilustradas": [1, 2, 3, 4, 5, 6, 7, 9]
+  "paginas_ilustradas": [1, 2, 3, 4, 5, 6, 7, 9],
+  "paletas": [
+    { "etiqueta": "Original", "colores": null },
+    { "etiqueta": "Oaxaca", "colores": ["#e6332a", "#ffb000", "#00a6a6", "#7b2ff7", "#ff5fa2", "#2bb24c"] },
+    { "etiqueta": "Noche", "colores": ["#3b2cc2", "#ff2e9a", "#ffd000", "#00c2ff", "#8a1cff", "#ff7a00"] },
+    { "etiqueta": "Selva", "colores": ["#1f9e45", "#ffd000", "#ff6a00", "#00b3a4", "#c1e000", "#e6332a"] },
+    { "etiqueta": "Mar", "colores": ["#0077d9", "#00d4c8", "#ff8f5c", "#7ad3ff", "#ffcf3a", "#ff7aa8"] },
+    { "etiqueta": "Sorpresa", "colores": "tono" }
+  ]
 }

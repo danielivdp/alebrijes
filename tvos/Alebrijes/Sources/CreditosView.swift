@@ -6,7 +6,7 @@ struct CreditosView: View {
         Papel(sombra: Tema.blue) {
             VStack(alignment: .leading, spacing: 18) {
                 seccion("Texto del cuento",
-                        "Adaptado para niños de los artículos «Alebrije» de Wikipedia en español y en inglés (CC BY-SA 4.0). Por eso el texto del cuento se comparte bajo la misma licencia.")
+                        "Adaptado para niños de los artículos «Alebrije» de Wikipedia en español y en inglés, y «Pedro Linares» de Wikipedia en inglés (CC BY-SA 4.0). Por eso el texto del cuento se comparte bajo la misma licencia.")
                 seccion("Fotografías",
                         "Alebrije tallándose en copal, Arrazola, Oaxaca (página 8): Nsaum75, CC BY-SA 4.0.\nAlebrijes monumentales en la CDMX (página 10): Secretaría de Cultura de la Ciudad de México, CC BY 2.0.")
                 seccion("Ilustraciones y criaturas",
