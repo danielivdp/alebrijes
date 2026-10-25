@@ -1,0 +1,38 @@
+name: Alebrijes
+options:
+  bundleIdPrefix: com.danielivdp
+  developmentLanguage: es
+  createIntermediateGroups: true
+  deploymentTarget:
+    tvOS: "18.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ST6J2JR7UY
+    CODE_SIGN_STYLE: Automatic
+    GENERATE_INFOPLIST_FILE: YES
+    INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: NO
+
+targets:
+  Alebrijes:
+    type: application
+    platform: tvOS
+    sources:
+      - path: Alebrijes/Sources
+      - path: Alebrijes/Resources
+      # Las imágenes del sitio web, sin copiarlas: una sola fuente para web y tele
+      - path: ../assets
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.danielivdp.alebrijes
+        PRODUCT_NAME: Alebrijes
+        TARGETED_DEVICE_FAMILY: "3"
+        INFOPLIST_KEY_CFBundleDisplayName: Alebrijes
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        ASSETCATALOG_COMPILER_APPICON_NAME: "App Icon & Top Shelf Image"

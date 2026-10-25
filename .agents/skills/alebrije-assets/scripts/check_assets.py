@@ -50,6 +50,7 @@ def main():
         (ASSETS / "cuento" / f"pagina-{n:02d}.png", False, False)
         for n in manifest["paginas_ilustradas"]
     ]
+    expected.append((ASSETS / "icono" / "don-pedro.png", True, True))
 
     issues = []
     for path, transparent, square in expected:

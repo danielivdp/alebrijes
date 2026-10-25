@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C21B58FB0A357D136111364 /* Recolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCEDC24F826AF536671FC25 /* Recolor.swift */; };
+		12C4C137A8D450381D2496BE /* AlebrijesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2581DDE3D71B1D82FB9C3C32 /* AlebrijesApp.swift */; };
+		1406164FD97CCDC73B5303D6 /* CreditosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8833D1C6739275CBF5BE51 /* CreditosView.swift */; };
+		2378027ECF09D5F3B57F2998 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176586B08EBD9E37925DBE8A /* Assets.xcassets */; };
+		29CD844DA8B674AA47FD0265 /* CrearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1ABA62D7EF143B8497B646 /* CrearView.swift */; };
+		44C0F12BA5188B23BB7EEB33 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 56DE554691B3B143591CDF92 /* assets */; };
+		5BF48FA8A7C875B91371AB28 /* Inicio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D409A6F760BD200B0F7F35 /* Inicio.swift */; };
+		6197D39195F42AAD4EACBF1F /* Datos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659655B90F8DB8C3E293C98A /* Datos.swift */; };
+		8214DBF6BB2309DF533A7D7B /* CuentoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CFB097B871CE3664510B52 /* CuentoView.swift */; };
+		DFEE8E3A8F184A396C357314 /* Confeti.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2E74F02E5E23D711C3840B /* Confeti.swift */; };
+		EBF630A91DD814B7FB9736B1 /* Tema.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22716644555FECF3309D716 /* Tema.swift */; };
+		F76CF9181EDB88C08397AA45 /* Ruleta.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEA0319929E04552C461683 /* Ruleta.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		176586B08EBD9E37925DBE8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2581DDE3D71B1D82FB9C3C32 /* AlebrijesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlebrijesApp.swift; sourceTree = "<group>"; };
+		33D409A6F760BD200B0F7F35 /* Inicio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inicio.swift; sourceTree = "<group>"; };
+		56DE554691B3B143591CDF92 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = SOURCE_ROOT; };
+		659655B90F8DB8C3E293C98A /* Datos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datos.swift; sourceTree = "<group>"; };
+		7DCEDC24F826AF536671FC25 /* Recolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recolor.swift; sourceTree = "<group>"; };
+		B22716644555FECF3309D716 /* Tema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tema.swift; sourceTree = "<group>"; };
+		B3E332641461757C738B5273 /* Alebrijes.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Alebrijes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1CFB097B871CE3664510B52 /* CuentoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuentoView.swift; sourceTree = "<group>"; };
+		DC2E74F02E5E23D711C3840B /* Confeti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confeti.swift; sourceTree = "<group>"; };
+		EA1ABA62D7EF143B8497B646 /* CrearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrearView.swift; sourceTree = "<group>"; };
+		FD8833D1C6739275CBF5BE51 /* CreditosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditosView.swift; sourceTree = "<group>"; };
+		FFEA0319929E04552C461683 /* Ruleta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleta.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1B9B9E5A06D8D264305A8F17 = {
+			isa = PBXGroup;
+			children = (
+				F63F2EA53A9A752ACDB1DC8C /* Alebrijes */,
+				1C30D1962ECC6ECF2DCBE734 /* alebrijes */,
+				40787360EC414BB6BC86AC6E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C30D1962ECC6ECF2DCBE734 /* alebrijes */ = {
+			isa = PBXGroup;
+			children = (
+				56DE554691B3B143591CDF92 /* assets */,
+			);
+			name = alebrijes;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		40787360EC414BB6BC86AC6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3E332641461757C738B5273 /* Alebrijes.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		681930E3BBA8F90539E4CBD0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2581DDE3D71B1D82FB9C3C32 /* AlebrijesApp.swift */,
+				DC2E74F02E5E23D711C3840B /* Confeti.swift */,
+				EA1ABA62D7EF143B8497B646 /* CrearView.swift */,
+				FD8833D1C6739275CBF5BE51 /* CreditosView.swift */,
+				D1CFB097B871CE3664510B52 /* CuentoView.swift */,
+				659655B90F8DB8C3E293C98A /* Datos.swift */,
+				33D409A6F760BD200B0F7F35 /* Inicio.swift */,
+				7DCEDC24F826AF536671FC25 /* Recolor.swift */,
+				FFEA0319929E04552C461683 /* Ruleta.swift */,
+				B22716644555FECF3309D716 /* Tema.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7DBB277C1B63BE4B352A6560 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				176586B08EBD9E37925DBE8A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F63F2EA53A9A752ACDB1DC8C /* Alebrijes */ = {
+			isa = PBXGroup;
+			children = (
+				7DBB277C1B63BE4B352A6560 /* Resources */,
+				681930E3BBA8F90539E4CBD0 /* Sources */,
+			);
+			path = Alebrijes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67113731868A31C842F41A4B /* Alebrijes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FD14FE11AD4EB57A2205A31 /* Build configuration list for PBXNativeTarget "Alebrijes" */;
+			buildPhases = (
+				33C953C7D52A0F5681CDE1B1 /* Sources */,
+				5D7C55C886296493FA9BA9BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alebrijes;
+			packageProductDependencies = (
+			);
+			productName = Alebrijes;
+			productReference = B3E332641461757C738B5273 /* Alebrijes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6241399F84758167782DB705 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					67113731868A31C842F41A4B = {
+						DevelopmentTeam = ST6J2JR7UY;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2044B7D2AA58EC18CB82D25F /* Build configuration list for PBXProject "Alebrijes" */;
+			developmentRegion = es;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				es,
+			);
+			mainGroup = 1B9B9E5A06D8D264305A8F17;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 40787360EC414BB6BC86AC6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67113731868A31C842F41A4B /* Alebrijes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5D7C55C886296493FA9BA9BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2378027ECF09D5F3B57F2998 /* Assets.xcassets in Resources */,
+				44C0F12BA5188B23BB7EEB33 /* assets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		33C953C7D52A0F5681CDE1B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12C4C137A8D450381D2496BE /* AlebrijesApp.swift in Sources */,
+				DFEE8E3A8F184A396C357314 /* Confeti.swift in Sources */,
+				29CD844DA8B674AA47FD0265 /* CrearView.swift in Sources */,
+				1406164FD97CCDC73B5303D6 /* CreditosView.swift in Sources */,
+				8214DBF6BB2309DF533A7D7B /* CuentoView.swift in Sources */,
+				6197D39195F42AAD4EACBF1F /* Datos.swift in Sources */,
+				5BF48FA8A7C875B91371AB28 /* Inicio.swift in Sources */,
+				0C21B58FB0A357D136111364 /* Recolor.swift in Sources */,
+				F76CF9181EDB88C08397AA45 /* Ruleta.swift in Sources */,
+				EBF630A91DD814B7FB9736B1 /* Tema.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1679DDEF7C88FA8883C0879A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ST6J2JR7UY;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
+			};
+			name = Release;
+		};
+		33D2C6DFD831C11E284DD17D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ST6J2JR7UY;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TVOS_DEPLOYMENT_TARGET = 18.0;
+			};
+			name = Debug;
+		};
+		AAE5C8FD4F1B0674334829A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_KEY_CFBundleDisplayName = Alebrijes;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielivdp.alebrijes;
+				PRODUCT_NAME = Alebrijes;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		FA8534CC2BF9EBEB91C5914A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_KEY_CFBundleDisplayName = Alebrijes;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.danielivdp.alebrijes;
+				PRODUCT_NAME = Alebrijes;
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2044B7D2AA58EC18CB82D25F /* Build configuration list for PBXProject "Alebrijes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33D2C6DFD831C11E284DD17D /* Debug */,
+				1679DDEF7C88FA8883C0879A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5FD14FE11AD4EB57A2205A31 /* Build configuration list for PBXNativeTarget "Alebrijes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA8534CC2BF9EBEB91C5914A /* Debug */,
+				AAE5C8FD4F1B0674334829A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6241399F84758167782DB705 /* Project object */;
+}

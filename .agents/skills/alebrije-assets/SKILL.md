@@ -1,11 +1,11 @@
 ---
 name: alebrije-assets
-description: Genera los assets de imagen del sitio Alebrijes — animales base, alebrijes mezcla (uno por pareja de animales) e ilustraciones del cuento — con un estilo visual común y la nomenclatura que espera la página. Usar cuando se pida crear, regenerar o completar imágenes de animales, mezclas o páginas del cuento de este repo. No usar para fotos de Wikipedia (esas se descargan, no se generan) ni para editar HTML/CSS.
+description: Genera los assets de imagen del sitio Alebrijes — animales base, alebrijes mezcla (uno por pareja de animales), ilustraciones del cuento e ícono de la app de Apple TV — con un estilo visual común y la nomenclatura que espera la página. Usar cuando se pida crear, regenerar o completar imágenes de animales, mezclas, páginas del cuento o el ícono de la app de este repo. No usar para fotos de Wikipedia (esas se descargan, no se generan) ni para editar HTML/CSS.
 ---
 
 # Assets del sitio Alebrijes
 
-Este skill produce tres tipos de imágenes. La generación se hace con el skill de sistema `$imagegen`
+Este skill produce cuatro tipos de imágenes. La generación se hace con el skill de sistema `$imagegen`
 en **modo built-in** (`image_gen`), una llamada por asset. No uses el CLI de fallback salvo que el
 usuario lo pida: el CLI con `gpt-image-2` no soporta fondo transparente.
 
@@ -14,6 +14,7 @@ usuario lo pida: el CLI con `gpt-image-2` no soporta fondo transparente.
 | Animal base | `references/animales.md` | `assets/animales/<slug>.png` | uno por animal del manifiesto |
 | Alebrije mezcla | `references/mezclas.md` | `assets/mezclas/<slugA>-<slugB>.png` | una por pareja (orden alfabético) |
 | Ilustración del cuento | `references/cuento.md` | `assets/cuento/pagina-NN.png` | páginas 01–07 y 09 |
+| Ícono de la app (tvOS) | `references/icono.md` | `assets/icono/don-pedro.png` | uno |
 
 La lista de animales vive en `assets/manifest.json` (fuente única). No inventes animales fuera de ella;
 si el usuario pide uno nuevo, agrégalo primero al manifiesto.
