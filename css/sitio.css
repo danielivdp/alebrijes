@@ -418,6 +418,7 @@ body.juego .nav { margin-bottom: 10px; }
 /* Taller: pantalla fija con los pasos para pintar el marcapáginas */
 body.taller { height: 100dvh; overflow: hidden; }
 body.taller .wrap { height: 100%; max-width: none; display: flex; flex-direction: column; gap: clamp(10px, 2.4dvh, 28px); padding: clamp(24px, 4dvh, 44px) clamp(16px, 3vw, 48px) clamp(20px, 3dvh, 36px); }
+body.taller .nav { margin-bottom: 0; }
 .taller-titulo { text-align: center; }
 .taller-titulo h1 {
   font-size: clamp(2rem, min(9dvh, 5.4vw), 6rem);
