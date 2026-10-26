@@ -67,6 +67,8 @@ struct CuentoView: View {
                         .fixedSize(horizontal: false, vertical: true)
                     // el tamaño de letra más grande con el que cabe la página entera
                     ViewThatFits(in: .vertical) {
+                        parrafos(46)
+                        parrafos(40)
                         parrafos(34)
                         parrafos(30)
                         parrafos(27)
